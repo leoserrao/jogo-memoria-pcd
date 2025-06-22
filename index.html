@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória Acessível</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Jogo da Memória Acessível</h1>
+    <p>Jogue com o mouse ou ative o reconhecimento de voz.</p>
+
+    <div class="game-info">
+        <h3>Pontuação: <span id="score">0</span></h3>
+        <button id="restart-button">Reiniciar Jogo</button>
+    </div>
+
+    <div id="game-board" class="game-board">
+        <!-- As cartas serão geradas pelo JavaScript aqui -->
+    </div>
+
+    <div class="voice-controls">
+        <h2>Controle por Voz</h2>
+        <button id="voice-toggle-button">▶️ Iniciar Reconhecimento de Voz</button>
+        <p class="voice-instructions">
+            Diga: <strong>"Virar carta linha [1-6] coluna [1-6]"</strong>
+            <br>
+            <em>Exemplo: "Virar carta linha 2 coluna 5"</em>
+        </p>
+        <p>Status: <span id="voice-status">Inativo. Clique no botão para começar.</span></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

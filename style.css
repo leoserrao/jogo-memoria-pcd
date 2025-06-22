@@ -1,0 +1,120 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f0f8ff;
+    color: #333;
+    margin: 0;
+}
+
+h1 {
+    color: #0056b3;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    width: 600px;
+    height: 600px;
+    perspective: 1000px; /* Para o efeito 3D da virada */
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card .front-face, .card .back-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Esconde a face de trás */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card .front-face {
+    background: #ffffff;
+    transform: rotateY(180deg); /* A face da frente começa virada */
+}
+
+.card .front-face img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+.card .back-face {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    font-size: 3rem;
+    color: white;
+    content: '?';
+}
+
+/* Estilo para cartas que já formaram par */
+.card.matched {
+    transform: rotateY(180deg);
+    opacity: 0.5;
+    cursor: default;
+}
+
+.game-info, .voice-controls {
+    text-align: center;
+    margin-bottom: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#restart-button, #voice-toggle-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#restart-button:hover, #voice-toggle-button:hover {
+    background-color: #218838;
+}
+
+#voice-status {
+    font-weight: bold;
+    color: #dc3545;
+}
+
+#voice-status.listening {
+    color: #28a745;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 700px) {
+    .game-board {
+        width: 95vw;
+        height: 95vw;
+        grid-gap: 5px;
+    }
+    h1 {
+        font-size: 1.5rem;
+    }
+}
