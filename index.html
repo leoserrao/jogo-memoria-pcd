@@ -16,8 +16,26 @@
         <button id="restart-button">Reiniciar Jogo</button>
     </div>
 
-    <div id="game-board" class="game-board">
-        <!-- As cartas serão geradas pelo JavaScript aqui -->
+    <div class="board-container">
+        <div class="board-labels-top">
+            <div class="board-label">1</div>
+            <div class="board-label">2</div>
+            <div class="board-label">3</div>
+            <div class="board-label">4</div>
+            <div class="board-label">5</div>
+            <div class="board-label">6</div>
+        </div>
+        <div class="board-labels-left">
+            <div class="board-label">1</div>
+            <div class="board-label">2</div>
+            <div class="board-label">3</div>
+            <div class="board-label">4</div>
+            <div class="board-label">5</div>
+            <div class="board-label">6</div>
+        </div>
+        <div id="game-board" class="game-board">
+            <!-- As cartas serão geradas pelo JavaScript aqui -->
+        </div>
     </div>
 
     <div class="voice-controls">
@@ -31,6 +49,55 @@
             <em>Exemplo: "1 e 5"</em>
         </p>
         <p>Status: <span id="voice-status">Inativo. Clique no botão para começar.</span></p>
+    </div>
+
+    <div class="regras">
+        <h1>Regras Jogo da Memória</h1>
+        <section class="card" aria-labelledby="preparacao">
+        <h2 id="preparacao">1. Preparação do jogo</h2>
+        <ol>
+          <li>As cartas devem ser embaralhadas e colocadas com a face voltada para baixo, formando uma grade (quadrada ou retangular).</li>
+          <li>Cada carta tem um par idêntico.</li>
+        </ol>
+      </section>
+
+      <section class="card" aria-labelledby="ordem" style="margin-top:12px">
+        <h2 id="ordem">2. Ordem dos jogadores</h2>
+        <ol>
+          <li>O jogo pode ser jogado individualmente ou em grupo.</li>
+          <li>Se houver mais de um jogador, define-se quem começa (por sorteio, idade, etc.) e a partida segue em turnos.</li>
+        </ol>
+      </section>
+
+      <section class="card" aria-labelledby="como" style="margin-top:12px">
+        <h2 id="como">3. Como jogar</h2>
+        <ol>
+          <li>No seu turno, o jogador deve virar <strong>duas cartas</strong>.</li>
+          <li>Se as duas cartas forem <strong>iguais</strong>, o jogador forma um par, o par de cartas é retirado do tabuleiro e o jogador ganha o direito de jogar novamente.</li>
+          <li>Se as cartas forem <strong>diferentes</strong>, elas devem ser viradas novamente para baixo, na mesma posição, e a vez passa para o próximo jogador.</li>
+        </ol>
+      </section>
+
+      <section class="card" aria-labelledby="memoria" style="margin-top:12px">
+        <h2 id="memoria">4. Memorização</h2>
+        <p>Todos os jogadores podem observar as cartas viradas, devendo memorizar suas posições para futuras jogadas.</p>
+      </section>
+
+      <section class="card" aria-labelledby="objetivo" style="margin-top:12px">
+        <h2 id="objetivo">5. Objetivo do jogo</h2>
+        <ol>
+          <li>O objetivo é formar o <strong>maior número de pares</strong> possível.</li>
+          <li>O jogo termina quando <strong>todas as cartas tiverem sido retiradas</strong> do tabuleiro.</li>
+        </ol>
+      </section>
+
+      <section class="card" aria-labelledby="vencedor" style="margin-top:12px">
+        <h2 id="vencedor">6. Vencedor</h2>
+        <ol>
+          <li>Vence o jogador que tiver conseguido mais pares.</li>
+          <li>Em caso de empate, pode ser declarado empate ou realizada uma nova rodada.</li>
+        </ol>
+      </section>
     </div>
 
     <script src="script.js"></script>

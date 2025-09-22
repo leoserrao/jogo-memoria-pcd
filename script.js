@@ -98,11 +98,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function flipCard() {
         if (lockBoard) return;
-        if (this === cardsChosen[0]) return;
-        this.classList.add('flipped');
+        if (this.classList.contains('matched')) return;
+
         const cardId = this.getAttribute('data-id');
+
+        if (cardsChosenIds.length === 1 && cardsChosenIds[0] === cardId) {
+            this.classList.remove('flipped');
+            cardsChosen = [];
+            cardsChosenIds = [];
+            return;
+        }
+
+        if (this.classList.contains('flipped')) {
+            return;
+        }
+
+        this.classList.add('flipped');
         cardsChosen.push(cardArray[cardId]);
         cardsChosenIds.push(cardId);
+
         if (cardsChosen.length === 2) {
             lockBoard = true;
             setTimeout(checkForMatch, 500);
