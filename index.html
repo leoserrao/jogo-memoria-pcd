@@ -8,12 +8,15 @@
 </head>
 <body>
 
-    <h1>Jogo da Memória Acessível</h1>
-    <p>Jogue com o mouse ou ative o reconhecimento de voz.</p>
+    <h1>Bem-vindo (a) ao Jogo da Memória Acessível</h1>
+    <p>Jogue com o <strong>mouse</strong> ou ative o <strong>reconhecimento de voz</strong>.</p>
+    <p>Para o comando de voz. Pressione a <strong>Barra de Espaço</strong> no teclado ou clique no botão do <strong>Controle de voz</strong> para ativar/desativar o microfone.</p>
 
     <div class="game-info">
-        <h3>Pontuação: <span id="score">0</span></h3>
+        <h3>Pontuação: <span id="score" aria-live="polite">0</span></h3>
         <button id="restart-button">Reiniciar Jogo</button>
+        <button id="narration-toggle-button">Ativar Narração</button>
+        <button id="rules-narration-button">Ouvir as regras do jogo</button>
     </div>
 
     <div class="board-container">
@@ -40,7 +43,7 @@
 
     <div class="voice-controls">
         <h2>Controle por Voz</h2>
-        <button id="voice-toggle-button">▶️ Iniciar Reconhecimento de Voz</button>
+        <button id="voice-toggle-button" aria-label="Ativar ou desativar comando de voz">▶️ Iniciar Reconhecimento de Voz</button>
         <p class="voice-instructions">
             Pressione a <strong>Barra de Espaço</strong> ou clique no botão para ativar/desativar o microfone.
             <br>
@@ -48,7 +51,7 @@
             <br>
             <em>Exemplo: "1 e 5"</em>
         </p>
-        <p>Status: <span id="voice-status">Inativo. Clique no botão para começar.</span></p>
+        <p>Status: <span id="voice-status" aria-live="polite">Inativo. Clique no botão para começar.</span></p>
     </div>
 
     <div class="regras">
@@ -99,6 +102,8 @@
         </ol>
       </section>
     </div>
+
+    <div class="visually-hidden" aria-live="polite"></div>
 
     <script src="script.js"></script>
 </body>

@@ -88,7 +88,7 @@ h1 {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-#restart-button, #voice-toggle-button {
+#restart-button, #voice-toggle-button, #narration-toggle-button, #rules-narration-button {
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
@@ -99,9 +99,18 @@ h1 {
     transition: background-color 0.3s;
 }
 
-#restart-button:hover, #voice-toggle-button:hover {
+#restart-button:hover, #voice-toggle-button:hover, #narration-toggle-button:hover, #rules-narration-button:hover {
     background-color: #218838;
 }
+
+#narration-toggle-button.active {
+    background-color: #0056b3;
+}
+
+#rules-narration-button.active {
+    background-color: #0056b3;
+}
+
 
 #voice-status {
     font-weight: bold;
@@ -139,6 +148,24 @@ h1 {
     font-weight: bold;
     font-size: 1.2rem;
     color: #0056b3;
+}
+
+.regras {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
 }
 
 /* Responsividade para telas menores */
