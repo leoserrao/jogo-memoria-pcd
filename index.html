@@ -8,21 +8,44 @@
 </head>
 <body>
 
-    <h1>Jogo da Memória Acessível</h1>
-    <p>Jogue com o mouse ou ative o reconhecimento de voz.</p>
+    <h1>Bem-vindo (a) ao Jogo da Memória Acessível</h1>
+    <p>Jogue com o <strong>mouse</strong> ou ative o <strong>reconhecimento de voz</strong>.</p>
+<p>Para o comando de voz. Pressione a <strong>Barra de Espaço</strong> no teclado ou clique no botão do <strong>Controle de voz</strong> para ativar/desativar o microfone.</p>
+<p>Para usar narração. Pressione a tecla <strong>N</strong> no teclado ou clique no botão do <strong>Ativar Narração</strong> para ativar a narração em áudio.</p>
+<p>Para ouvir as regras a narração deve está ativada. Pressione a tecla <strong>R</strong> no teclado ou clique no botão <strong>Ouvir as regras do jogo</strong>.</p>    
 
     <div class="game-info">
-        <h3>Pontuação: <span id="score">0</span></h3>
+        <h3>Pontuação: <span id="score" aria-live="polite">0</span></h3>
         <button id="restart-button">Reiniciar Jogo</button>
+        <button id="narration-toggle-button">Ativar Narração</button>
+        <button id="rules-narration-button">Ouvir as regras do jogo</button>
     </div>
 
-    <div id="game-board" class="game-board">
-        <!-- As cartas serão geradas pelo JavaScript aqui -->
+    <div class="board-container">
+        <div class="board-labels-top">
+            <div class="board-label">1</div>
+            <div class="board-label">2</div>
+            <div class="board-label">3</div>
+            <div class="board-label">4</div>
+            <div class="board-label">5</div>
+            <div class="board-label">6</div>
+        </div>
+        <div class="board-labels-left">
+            <div class="board-label">1</div>
+            <div class="board-label">2</div>
+            <div class="board-label">3</div>
+            <div class="board-label">4</div>
+            <div class="board-label">5</div>
+            <div class="board-label">6</div>
+        </div>
+        <div id="game-board" class="game-board">
+            <!-- As cartas serão geradas pelo JavaScript aqui -->
+        </div>
     </div>
 
     <div class="voice-controls">
         <h2>Controle por Voz</h2>
-        <button id="voice-toggle-button">▶️ Iniciar Reconhecimento de Voz</button>
+        <button id="voice-toggle-button" aria-label="Ativar ou desativar comando de voz">▶️ Iniciar Reconhecimento de Voz</button>
         <p class="voice-instructions">
             Pressione a <strong>Barra de Espaço</strong> ou clique no botão para ativar/desativar o microfone.
             <br>
@@ -30,8 +53,59 @@
             <br>
             <em>Exemplo: "1 e 5"</em>
         </p>
-        <p>Status: <span id="voice-status">Inativo. Clique no botão para começar.</span></p>
+        <p>Status: <span id="voice-status" aria-live="polite">Inativo. Clique no botão para começar.</span></p>
     </div>
+
+    <div class="regras">
+        <h1>Regras Jogo da Memória</h1>
+        <section class="card" aria-labelledby="preparacao">
+        <h2 id="preparacao">1. Preparação do jogo</h2>
+        <ol>
+          <li>As cartas devem ser embaralhadas e colocadas com a face voltada para baixo, formando uma grade (quadrada ou retangular).</li>
+          <li>Cada carta tem um par idêntico.</li>
+        </ol>
+      </section>
+
+      <section class="card" aria-labelledby="ordem" style="margin-top:12px">
+        <h2 id="ordem">2. Ordem dos jogadores</h2>
+        <ol>
+          <li>O jogo pode ser jogado individualmente ou em grupo.</li>
+          <li>Se houver mais de um jogador, define-se quem começa (por sorteio, idade, etc.) e a partida segue em turnos.</li>
+        </ol>
+      </section>
+
+      <section class="card" aria-labelledby="como" style="margin-top:12px">
+        <h2 id="como">3. Como jogar</h2>
+        <ol>
+          <li>No seu turno, o jogador deve virar <strong>duas cartas</strong>.</li>
+          <li>Se as duas cartas forem <strong>iguais</strong>, o jogador forma um par, o par de cartas é retirado do tabuleiro e o jogador ganha o direito de jogar novamente.</li>
+          <li>Se as cartas forem <strong>diferentes</strong>, elas devem ser viradas novamente para baixo, na mesma posição, e a vez passa para o próximo jogador.</li>
+        </ol>
+      </section>
+
+      <section class="card" aria-labelledby="memoria" style="margin-top:12px">
+        <h2 id="memoria">4. Memorização</h2>
+        <p>Todos os jogadores podem observar as cartas viradas, devendo memorizar suas posições para futuras jogadas.</p>
+      </section>
+
+      <section class="card" aria-labelledby="objetivo" style="margin-top:12px">
+        <h2 id="objetivo">5. Objetivo do jogo</h2>
+        <ol>
+          <li>O objetivo é formar o <strong>maior número de pares</strong> possível.</li>
+          <li>O jogo termina quando <strong>todas as cartas tiverem sido retiradas</strong> do tabuleiro.</li>
+        </ol>
+      </section>
+
+      <section class="card" aria-labelledby="vencedor" style="margin-top:12px">
+        <h2 id="vencedor">6. Vencedor</h2>
+        <ol>
+          <li>Vence o jogador que tiver conseguido mais pares.</li>
+          <li>Em caso de empate, pode ser declarado empate ou realizada uma nova rodada.</li>
+        </ol>
+      </section>
+    </div>
+
+    <div class="visually-hidden" aria-live="polite"></div>
 
     <script src="script.js"></script>
 </body>

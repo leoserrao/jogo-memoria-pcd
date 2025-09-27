@@ -14,6 +14,11 @@ h1 {
     color: #0056b3;
 }
 
+.board-container {
+    position: relative;
+    margin-top: 40px;
+}
+
 .game-board {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -21,6 +26,7 @@ h1 {
     width: 600px;
     height: 600px;
     perspective: 1000px; /* Para o efeito 3D da virada */
+    margin-left: 40px; /* Espaço para os números da linha */
 }
 
 .card {
@@ -70,7 +76,6 @@ h1 {
 /* Estilo para cartas que já formaram par */
 .card.matched {
     transform: rotateY(180deg);
-    opacity: 0.5;
     cursor: default;
 }
 
@@ -83,7 +88,7 @@ h1 {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-#restart-button, #voice-toggle-button {
+#restart-button, #voice-toggle-button, #narration-toggle-button, #rules-narration-button {
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
@@ -94,9 +99,18 @@ h1 {
     transition: background-color 0.3s;
 }
 
-#restart-button:hover, #voice-toggle-button:hover {
+#restart-button:hover, #voice-toggle-button:hover, #narration-toggle-button:hover, #rules-narration-button:hover {
     background-color: #218838;
 }
+
+#narration-toggle-button.active {
+    background-color: #0056b3;
+}
+
+#rules-narration-button.active {
+    background-color: #0056b3;
+}
+
 
 #voice-status {
     font-weight: bold;
@@ -107,13 +121,75 @@ h1 {
     color: #28a745;
 }
 
+.board-labels-top {
+    display: flex;
+    justify-content: space-around;
+    width: 600px;
+    margin-left: 40px; /* Alinhar com o tabuleiro */
+    margin-bottom: 10px;
+}
+
+.board-labels-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.board-label {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #0056b3;
+}
+
+.regras {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
 /* Responsividade para telas menores */
 @media (max-width: 700px) {
-    .game-board {
+    .board-container {
         width: 95vw;
-        height: 95vw;
+    }
+
+    .game-board {
+        width: calc(95vw - 40px);
+        height: calc(95vw - 40px);
+        margin-left: 40px;
         grid-gap: 5px;
     }
+
+    .board-labels-top {
+        width: calc(95vw - 40px);
+        margin-left: 40px;
+    }
+
+    .board-labels-left {
+        height: calc(95vw - 40px);
+    }
+
     h1 {
         font-size: 1.5rem;
     }
