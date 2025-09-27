@@ -88,7 +88,7 @@ h1 {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-#restart-button, #voice-toggle-button, #narration-toggle-button, #rules-narration-button {
+#restart-button, #voice-toggle-button, #narration-toggle-button, #rules-narration-button, #high-contrast-toggle {
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
@@ -193,4 +193,56 @@ h1 {
     h1 {
         font-size: 1.5rem;
     }
+}
+
+/* High Contrast Mode */
+body.high-contrast {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+body.high-contrast h1,
+body.high-contrast .board-label {
+    color: #ffff00; /* Amarelo para títulos e rótulos */
+}
+
+body.high-contrast .game-info,
+body.high-contrast .voice-controls {
+    background: #000000;
+    border: 1px solid #ffff00;
+}
+
+body.high-contrast #restart-button,
+body.high-contrast #voice-toggle-button,
+body.high-contrast #narration-toggle-button,
+body.high-contrast #rules-narration-button,
+body.high-contrast #high-contrast-toggle {
+    background-color: #ffff00;
+    color: #000000;
+    border: 1px solid #000000;
+}
+
+body.high-contrast #restart-button:hover,
+body.high-contrast #voice-toggle-button:hover,
+body.high-contrast #narration-toggle-button:hover,
+body.high-contrast #rules-narration-button:hover,
+body.high-contrast #high-contrast-toggle:hover {
+    background-color: #ffffff;
+}
+
+body.high-contrast .card .back-face {
+    background: #555555;
+    color: #ffff00;
+}
+
+body.high-contrast .card .front-face {
+    background: #dddddd;
+}
+
+body.high-contrast #voice-status {
+    color: #ff0000;
+}
+
+body.high-contrast #voice-status.listening {
+    color: #00ff00;
 }

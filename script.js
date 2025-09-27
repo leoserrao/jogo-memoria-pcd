@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const voiceToggleButton = document.getElementById('voice-toggle-button');
     const narrationToggleButton = document.getElementById('narration-toggle-button');
     const rulesNarrationButton = document.getElementById('rules-narration-button');
+    const highContrastToggleButton = document.getElementById('high-contrast-toggle');
     const voiceStatusElement = document.getElementById('voice-status');
     const srAnnouncer = document.querySelector('.visually-hidden');
 
@@ -323,6 +324,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function toggleHighContrast() {
+        document.body.classList.toggle('high-contrast');
+        const isHighContrast = document.body.classList.contains('high-contrast');
+        announce(isHighContrast ? 'Modo de alto contraste ativado.' : 'Modo de alto contraste desativado.');
+    }
+
+    highContrastToggleButton.addEventListener('click', toggleHighContrast);
+
     // --- EVENT LISTENERS ATUALIZADOS ---
     restartButton.addEventListener('click', restartGame);
     
@@ -340,6 +349,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (event.key.toLowerCase() === 'r') {
             event.preventDefault();
             narrateRules();
+        } else if (event.key.toLowerCase() === 'a') {
+            event.preventDefault();
+            toggleHighContrast();
         }
     });
 
