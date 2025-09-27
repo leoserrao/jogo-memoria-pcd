@@ -273,10 +273,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (cardsWon.length === cardArray.length / 2) {
             const finalMessage = 'Parabéns! Você encontrou todos os pares!';
-            alert("Parabéns! Você encontrou todos os pares! Fim de jogo.");
             voiceStatusElement.textContent = finalMessage;
             announce(`${finalMessage} Fim de jogo.`);
             if(isListening) recognition.stop();
+            alert("Parabéns! Você encontrou todos os pares! Fim de jogo.");
         }
     }
 
