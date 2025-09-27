@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     narrationToggleButton.addEventListener('click', toggleNarration);
 
-    const rulesText = 'Bem-vindo ao Jogo da Memória Acessível. Jogue com o mouse ou ative o reconhecimento de voz. Para usar o comando de voz. Pressione a Barra de Espaço do teclado ou clique no botão do Controle de voz para ativar / desativar o microfone. Regras Jogo da Memória. 1. Preparação do jogo. As cartas devem ser embaralhadas e colocadas com a face voltada para baixo, formando uma grade. Esse jogo possui 18 pares de cartas, dispostos em uma grade com 6 linhas e 6 colunas. Para virar uma carta por comando de voz diga o número da linha e o número da coluna. Exemplo 1 e 3 para virar a carta da linha 1 coluna 3. Cada carta tem um par idêntico. 2. Ordem dos jogadores. O jogo pode ser jogado individualmente ou em grupo. Se houver mais de um jogador, define-se quem começa e a partida segue em turnos. 3. Como jogar. No seu turno, o jogador deve virar duas cartas. Se as duas cartas forem iguais, o jogador forma um par, as cartas saem do tabuleiro e o jogador ganha o direito de jogar novamente. Se as cartas forem diferentes, deve virá-las novamente para baixo, na mesma posição, e a vez passa para o próximo jogador. O jogador pode usar o mouse ou ativar o comando de voz para virar as cartas. 4. Memorização. Todos os jogadores podem observar as cartas viradas, devendo memorizar suas posições para futuras jogadas. 5. Objetivo do jogo. O objetivo é formar o maior número de pares possível. O jogo termina quando todas as cartas tiverem sido retiradas do tabuleiro. 6. Vencedor. Vence o jogador que tiver conseguido mais pares. Em caso de empate, pode ser declarado empate ou realizada uma nova rodada.';
+    const rulesText = 'Regras Jogo da Memória. 1. Preparação do jogo. As cartas devem ser embaralhadas e colocadas com a face voltada para baixo, formando uma grade. Esse jogo possui 18 pares de cartas, dispostos em uma grade com 6 linhas e 6 colunas. Para virar uma carta por comando de voz diga o número da linha e o número da coluna. Exemplo 1 e 3 para virar a carta da linha 1 coluna 3. Cada carta tem um par idêntico. 2. Ordem dos jogadores. O jogo pode ser jogado individualmente ou em grupo. Se houver mais de um jogador, define-se quem começa e a partida segue em turnos. 3. Como jogar. No seu turno, o jogador deve virar duas cartas. Se as duas cartas forem iguais, o jogador forma um par, as cartas saem do tabuleiro e o jogador ganha o direito de jogar novamente. Se as cartas forem diferentes, deve virá-las novamente para baixo, na mesma posição, e a vez passa para o próximo jogador. O jogador pode usar o mouse ou ativar o comando de voz para virar as cartas. 4. Memorização. Todos os jogadores podem observar as cartas viradas, devendo memorizar suas posições para futuras jogadas. 5. Objetivo do jogo. O objetivo é formar o maior número de pares possível. O jogo termina quando todas as cartas tiverem sido retiradas do tabuleiro. 6. Vencedor. Vence o jogador que tiver conseguido mais pares. Em caso de empate, pode ser declarado empate ou realizada uma nova rodada.';
 
     function narrateRules() {
         if (speechSynthesis.speaking) {
@@ -345,4 +345,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Inicia o jogo pela primeira vez
     createBoard();
+
+    function welcomeNarration() {
+        // Ativa a narração sem anunciar
+        isNarrationEnabled = true;
+        narrationToggleButton.textContent = 'Desativar Narração';
+        narrationToggleButton.classList.add('active');
+        
+        // Narra a mensagem de boas-vindas
+        const welcomeMessage = "Bem-vindo ao Jogo da Memória Acessível. Jogue com o mouse ou ative o reconhecimento de voz. Para usar o comando de voz. Pressione a Barra de Espaço do teclado ou clique no botão do Controle de voz para ativar o microfone. Para usar narração. Pressione a tecla N no teclado ou clique no botão do Ativar Narração para ativar a narração em áudio. Para ouvir as regras do jogo a narração deve está ativada. Para isso pressione a tecla R no teclado ou clique no botão Ouvir as regras do jogo.";
+        const utterance = new SpeechSynthesisUtterance(welcomeMessage);
+        utterance.lang = 'pt-BR';
+        
+        // Garante que a fala comece após um pequeno atraso para contornar problemas de inicialização
+        setTimeout(() => {
+            speechSynthesis.speak(utterance);
+            srAnnouncer.textContent = welcomeMessage;
+        }, 100);
+    }
+
+    welcomeNarration();
 });
