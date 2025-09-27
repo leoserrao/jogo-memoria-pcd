@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         speechSynthesis.speak(utterance);
     }
 
-    narrationToggleButton.addEventListener('click', () => {
+    function toggleNarration() {
         isNarrationEnabled = !isNarrationEnabled;
         if (isNarrationEnabled) {
             narrationToggleButton.textContent = 'Desativar Narração';
@@ -39,22 +39,48 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             narrationToggleButton.textContent = 'Ativar Narração';
             narrationToggleButton.classList.remove('active');
-            announce('Narração desativada.');
+            const utterance = new SpeechSynthesisUtterance('Narração desativada.');
+            utterance.lang = 'pt-BR';
+            speechSynthesis.speak(utterance);
+            srAnnouncer.textContent = 'Narração desativada.';
         }
-    });
+    }
 
-    rulesNarrationButton.addEventListener('click', () => {
-        isNarrationEnabled = !isNarrationEnabled;
-        if (isNarrationEnabled) {
-            rulesNarrationButton.textContent = 'Desativar Narração de Regras';
-            rulesNarrationButton.classList.add('active');
-            announce('Narração ativada. Bem-vindo ao Jogo da Memória Acessível. Jogue com o mouse ou ative o reconhecimento de voz. Para usar o comando de voz. Pressione a Barra de Espaço do teclado ou clique no botão do Controle de voz para ativar / desativar o microfone. Regras Jogo da Memória. 1. Preparação do jogo. As cartas devem ser embaralhadas e colocadas com a face voltada para baixo, formando uma grade. Esse jogo possui 18 pares de cartas, dispostos em uma grade com 6 linhas e 6 colunas. Para virar uma carta por comando de voz diga o número da linha e o número da coluna. Exemplo 1 e 3 para virar a carta da linha 1 coluna 3. Cada carta tem um par idêntico. 2. Ordem dos jogadores. O jogo pode ser jogado individualmente ou em grupo. Se houver mais de um jogador, define-se quem começa e a partida segue em turnos. 3. Como jogar. No seu turno, o jogador deve virar duas cartas. Se as duas cartas forem iguais, o jogador forma um par, as cartas saem do tabuleiro e o jogador ganha o direito de jogar novamente. Se as cartas forem diferentes, deve virá-las novamente para baixo, na mesma posição, e a vez passa para o próximo jogador. O jogador pode usar o mouse ou ativar o comando de voz para virar as cartas. 4. Memorização. Todos os jogadores podem observar as cartas viradas, devendo memorizar suas posições para futuras jogadas. 5. Objetivo do jogo. O objetivo é formar o maior número de pares possível. O jogo termina quando todas as cartas tiverem sido retiradas do tabuleiro. 6. Vencedor. Vence o jogador que tiver conseguido mais pares. Em caso de empate, pode ser declarado empate ou realizada uma nova rodada.');
-        } else {
-            rulesNarrationButton.textContent = 'Ativar Narração de Regras';
-            rulesNarrationButton.classList.remove('active');
-            announce('Narração desativada.');
+    narrationToggleButton.addEventListener('click', toggleNarration);
+
+    const rulesText = 'Bem-vindo ao Jogo da Memória Acessível. Jogue com o mouse ou ative o reconhecimento de voz. Para usar o comando de voz. Pressione a Barra de Espaço do teclado ou clique no botão do Controle de voz para ativar / desativar o microfone. Regras Jogo da Memória. 1. Preparação do jogo. As cartas devem ser embaralhadas e colocadas com a face voltada para baixo, formando uma grade. Esse jogo possui 18 pares de cartas, dispostos em uma grade com 6 linhas e 6 colunas. Para virar uma carta por comando de voz diga o número da linha e o número da coluna. Exemplo 1 e 3 para virar a carta da linha 1 coluna 3. Cada carta tem um par idêntico. 2. Ordem dos jogadores. O jogo pode ser jogado individualmente ou em grupo. Se houver mais de um jogador, define-se quem começa e a partida segue em turnos. 3. Como jogar. No seu turno, o jogador deve virar duas cartas. Se as duas cartas forem iguais, o jogador forma um par, as cartas saem do tabuleiro e o jogador ganha o direito de jogar novamente. Se as cartas forem diferentes, deve virá-las novamente para baixo, na mesma posição, e a vez passa para o próximo jogador. O jogador pode usar o mouse ou ativar o comando de voz para virar as cartas. 4. Memorização. Todos os jogadores podem observar as cartas viradas, devendo memorizar suas posições para futuras jogadas. 5. Objetivo do jogo. O objetivo é formar o maior número de pares possível. O jogo termina quando todas as cartas tiverem sido retiradas do tabuleiro. 6. Vencedor. Vence o jogador que tiver conseguido mais pares. Em caso de empate, pode ser declarado empate ou realizada uma nova rodada.';
+
+    function narrateRules() {
+        if (speechSynthesis.speaking) {
+            speechSynthesis.cancel(); // This will trigger the onend event
+            return;
         }
-    });
+
+        let textToSpeak;
+        if (isNarrationEnabled) {
+            textToSpeak = rulesText;
+        } else {
+            textToSpeak = 'Narração desativada. Ative a narração com a tecla N para ouvir as regras.';
+        }
+
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        utterance.lang = 'pt-BR';
+        
+        utterance.onstart = () => {
+            rulesNarrationButton.classList.add('active');
+        };
+
+        utterance.onend = () => {
+            // onend fires for both completion and cancellation
+            rulesNarrationButton.classList.remove('active');
+        };
+        
+        // The announce function hides the utterance object, so we call speak directly
+        srAnnouncer.textContent = textToSpeak;
+        speechSynthesis.speak(utterance);
+    }
+
+    rulesNarrationButton.addEventListener('click', narrateRules);
 
     // Lógica do Reconhecimento de Voz
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -303,13 +329,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // O botão agora chama a função centralizada
     voiceToggleButton.addEventListener('click', toggleVoiceRecognition);
     
-    // NOVO: Listener para a barra de espaço
+    // NOVO: Listener para teclas de atalho
     document.addEventListener('keydown', (event) => {
-        // Verifica se a tecla pressionada é a barra de espaço
         if (event.key === ' ' || event.code === 'Space') {
-            // Impede o comportamento padrão da barra de espaço (rolar a página)
             event.preventDefault(); 
             toggleVoiceRecognition();
+        } else if (event.key.toLowerCase() === 'n') {
+            event.preventDefault();
+            toggleNarration();
+        } else if (event.key.toLowerCase() === 'r') {
+            event.preventDefault();
+            narrateRules();
         }
     });
 
