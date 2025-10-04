@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function narrateRules() {
         if (speechSynthesis.speaking) {
-            speechSynthesis.cancel(); // This will trigger the onend event
+            speechSynthesis.cancel(); // Isso acionará o evento onend
             return;
         }
 
@@ -72,11 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         utterance.onend = () => {
-            // onend fires for both completion and cancellation
+            // onend dispara tanto para conclusão quanto para cancelamento
             rulesNarrationButton.classList.remove('active');
         };
         
-        // The announce function hides the utterance object, so we call speak directly
+        // A função announce oculta o objeto de expressão, então chamamos speak diretamente
         srAnnouncer.textContent = textToSpeak;
         speechSynthesis.speak(utterance);
     }
