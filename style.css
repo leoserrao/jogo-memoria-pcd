@@ -25,30 +25,35 @@ h1 {
     grid-gap: 10px;
     width: 600px;
     height: 600px;
-    perspective: 1000px; /* Para o efeito 3D da virada */
-    margin-left: 40px; /* Espaço para os números da linha */
+    perspective: 1000px;
+    /* Para o efeito 3D da virada */
+    margin-left: 40px;
+    /* Espaço para os números da linha */
 }
 
 .card {
-    width: 100%;
+    max-width: 800px;
+    width: 90%;
     height: 100%;
     position: relative;
     cursor: pointer;
     transform-style: preserve-3d;
     transition: transform 0.6s;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .card.flipped {
     transform: rotateY(180deg);
 }
 
-.card .front-face, .card .back-face {
+.card .front-face,
+.card .back-face {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* Esconde a face de trás */
+    backface-visibility: hidden;
+    /* Esconde a face de trás */
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -57,7 +62,8 @@ h1 {
 
 .card .front-face {
     background: #ffffff;
-    transform: rotateY(180deg); /* A face da frente começa virada */
+    transform: rotateY(180deg);
+    /* A face da frente começa virada */
 }
 
 .card .front-face img {
@@ -79,16 +85,24 @@ h1 {
     cursor: default;
 }
 
-.game-info, .voice-controls {
+.game-info,
+.voice-controls {
     text-align: center;
     margin-bottom: 20px;
     background: white;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-#restart-button, #voice-toggle-button, #narration-toggle-button, #rules-narration-button, #high-contrast-toggle {
+#restart-button,
+#voice-toggle-button,
+#narration-toggle-button,
+#rules-narration-button,
+#high-contrast-toggle {
     padding: 10px 20px;
     font-size: 1rem;
     border-radius: 5px;
@@ -99,7 +113,10 @@ h1 {
     transition: background-color 0.3s;
 }
 
-#restart-button:hover, #voice-toggle-button:hover, #narration-toggle-button:hover, #rules-narration-button:hover {
+#restart-button:hover,
+#voice-toggle-button:hover,
+#narration-toggle-button:hover,
+#rules-narration-button:hover {
     background-color: #218838;
 }
 
@@ -125,7 +142,8 @@ h1 {
     display: flex;
     justify-content: space-around;
     width: 600px;
-    margin-left: 40px; /* Alinhar com o tabuleiro */
+    margin-left: 40px;
+    /* Alinhar com o tabuleiro */
     margin-bottom: 10px;
 }
 
@@ -203,7 +221,8 @@ body.high-contrast {
 
 body.high-contrast h1,
 body.high-contrast .board-label {
-    color: #ffff00; /* Amarelo para títulos e rótulos */
+    color: #ffff00;
+    /* Amarelo para títulos e rótulos */
 }
 
 body.high-contrast .game-info,
@@ -253,7 +272,7 @@ body.high-contrast #voice-status.listening {
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-width: 800px;
     width: 90%;
 }
